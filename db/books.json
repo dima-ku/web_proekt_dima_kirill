@@ -1,0 +1,16 @@
+[
+    {
+        "id": 123,
+        "title": "Crime and Punishment",
+        "author": "Mihail Fyodorovich Dostoyevski",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/71CcO-jvRUL.jpg",
+        "year": 1866
+    },
+    {
+        "id": 124,
+        "title": "War and Peace",
+        "author": "Lev Nickolaevich Tolstoy",
+        "img": "https://s1.livelib.ru/boocover/1000762124/o/3750/Leo_Tolstoy__War_and_Peace.jpeg",
+        "year": 1869
+    }
+]
