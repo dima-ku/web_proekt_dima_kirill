@@ -1,23 +1,51 @@
 [
-    {
-        "id": 123,
-        "title": "Crime and Punishment",
-        "author": "Mihail Fyodorovich Dostoyevski",
-        "img": "https://images-na.ssl-images-amazon.com/images/I/71CcO-jvRUL.jpg",
-        "year": 1866
-    },
-    {
-        "id": 124,
-        "title": "War and Peace",
-        "author": "Lev Nickolaevich Tolstoy",
-        "img": "https://s1.livelib.ru/boocover/1000762124/o/3750/Leo_Tolstoy__War_and_Peace.jpeg",
-        "year": 1869
-    },
-    {
-        "id": 125,
-        "title": "Fathers and sons",
-        "author": "Ivan Turgenev",
-        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Otsy1880.jpg/800px-Otsy1880.jpg",
-        "year": 1849
-    }
+  {
+    "id": 123,
+    "title": "Crime and Punishment",
+    "author": "Mihail Fyodorovich Dostoyevski",
+    "img": "https://images-na.ssl-images-amazon.com/images/I/71CcO-jvRUL.jpg",
+    "year": 1866
+  },
+  {
+    "id": 124,
+    "title": "War and Peace",
+    "author": "Lev Nickolaevich Tolstoy",
+    "img": "https://s1.livelib.ru/boocover/1000762124/o/3750/Leo_Tolstoy__War_and_Peace.jpeg",
+    "year": 1869
+  },
+  {
+    "id": 125,
+    "title": "Fahrenheit 451",
+    "author": "Ray Bradbury",
+    "img": "https://www.podpisnie.ru/upload/resize_images/12927864/classic_312x460_12927864.jpeg",
+    "year": 1876
+  },
+  {
+    "id": 126,
+    "title": "The Brothers Karamazov",
+    "author": "Mihail Fyodorovich Dostoyevski",
+    "img": "https://images-na.ssl-images-amazon.com/images/I/8117HB7WbvL.jpg",
+    "year": 1880
+  },
+  {
+    "id": 127,
+    "title": "The Idiot",
+    "author": "Mihail Fyodorovich Dostoyevski",
+    "img": "https://images-na.ssl-images-amazon.com/images/I/41K1QqtKyNL._SX322_BO1,204,203,200_.jpg",
+    "year": 1868
+  },
+  {
+    "id": 128,
+    "title": "Notes from Underground",
+    "author": "Mihail Fyodorovich Dostoyevski",
+    "img": "https://images-na.ssl-images-amazon.com/images/I/41novGr34wL._SX319_BO1,204,203,200_.jpg",
+    "year": 1864
+  },
+  {
+    "id": 129,
+    "title": "Eugene Onegin",
+    "author": "Alexander Sergeyevich Pushkin",
+    "img": "https://images-na.ssl-images-amazon.com/images/I/51BI9rag+fL._SX327_BO1,204,203,200_.jpg",
+    "year": 1831
+  }
 ]
