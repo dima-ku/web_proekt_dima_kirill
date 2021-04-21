@@ -12,5 +12,12 @@
         "author": "Lev Nickolaevich Tolstoy",
         "img": "https://s1.livelib.ru/boocover/1000762124/o/3750/Leo_Tolstoy__War_and_Peace.jpeg",
         "year": 1869
+    },
+    {
+        "id": 125,
+        "title": "Fathers and sons",
+        "author": "Ivan Turgenev",
+        "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Otsy1880.jpg/800px-Otsy1880.jpg",
+        "year": 1849
     }
 ]
