@@ -1,6 +1,7 @@
-from os import abort
+import os
 from flask import Flask, request, redirect, session
 from flask.globals import current_app, session
+from flask.helpers import send_file, send_from_directory
 from flask.templating import render_template
 from flask import Flask, render_template, redirect, url_for
 from flask_login import LoginManager, login_user, login_required, logout_user
@@ -25,7 +26,7 @@ client.index('books').add_documents(books)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-
+app.config['UPLOAD_FOLDER'] = 'files'
 global_init('db/db.db')
 login_manager = LoginManager(app)
 
@@ -96,7 +97,12 @@ def book_page(book_id):
             db_sess.add(rating)
         db_sess.commit()
     param = {}
-    param['book'] = client.index('books').search(book_id)['hits'][0]
+    with open('db/books.json') as f:
+        data = json.load(f)
+        for book in data:
+            if book['id'] == book_id:
+                param['book'] = book
+                break
     param['title'] = param['book']['title']
     rating = 0
     if 'user_id' in session and session['user_id']:
@@ -114,7 +120,12 @@ def book_page(book_id):
     if 'user_id' in session and session['user_id']:
         param['favourite'] = book_id in db_sess.query(User).filter(User.id == session['user_id']).first().favourite_books
     comments = db_sess.query(Comment).filter(Comment.book_id == book_id).all()
-    return render_template('book.html', param=param, comments=reversed(comments))
+    print(os.path.isfile(f'files/{book_id}.pdf'))
+    return render_template('book.html', param=param, comments=reversed(comments), exists=os.path.isfile(f'files/{book_id}.pdf'))
+
+@app.route('/books/<book_id>/download')
+def download(book_id):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], f'{book_id}.pdf', as_attachment=True)
 
 @app.route('/books/<book_id>/<r>/favourite')
 @login_required

@@ -26,9 +26,13 @@
       {% endif %}
       {% else %}
       <div class="alert alert-primary" role="alert">
-        Войдите, чтобы добавить эту книгу в понравившиеся!
+        Войдите, чтобы добавить эту книгу в понравившиеся! 
       </div>
       {% endif %}
+      {% if exists %}
+      <a href="{{param['book']['id']}}/download" target="_blank"><button type="button" class="btn btn-primary">Загрузить</button></a>
+      {% endif %}
+      <a href="{{param['book']['link']}}"><button type="button" class="btn btn-warning">Сохранить на Яндекс.Диск</button></a>
     </div>
   </div>
 </div>

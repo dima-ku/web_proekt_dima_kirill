@@ -17,6 +17,7 @@
 <body>
   <header>
     <nav class="navbar navbar-light bg-light">
+    <a href="{{url_for('index')}}"><img width="40px" height="40px" src="{{url_for('static', filename='img/main_page_icon.png')}}"></a>
       <form method="POST" class="container" action="{{ url_for('index')}}">
         <div class="input-group mb-3">
           <input name='search_bar' type="text" class="form-control" placeholder="Поиск" aria-label="search"
