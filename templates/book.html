@@ -2,10 +2,11 @@
 
 {% block meta %}
 <link rel='stylesheet' href="{{url_for('static', filename='css/rating.css')}}">
-<link href="url_for('static', filename='fonts\fontawesome-free-5.15.3-web\css\fontawesome.css')" rel="stylesheet">
-<link href="url_for('static', filename='fonts\fontawesome-free-5.15.3-web\css\brands.css')" rel="stylesheet">
-<link href="url_for('static', filename='fonts\fontawesome-free-5.15.3-web\css\solid.css')" rel="stylesheet">
-<link href="url_for('static', filename='fonts\fontawesome-free-5.15.3-web\css\fontawesome.min.css')" rel='stylesheet'>
+<link href="{{url_for('static', filename='fonts\fontawesome-free-5.15.3-web\css\fontawesome.css')}}" rel="stylesheet">
+<link href="{{url_for('static', filename='fonts\fontawesome-free-5.15.3-web\css\brands.css')}}" rel="stylesheet">
+<link href="{{url_for('static', filename='fonts\fontawesome-free-5.15.3-web\css\solid.css')}}" rel="stylesheet">
+<link href="{{url_for('static', filename='fonts\fontawesome-free-5.15.3-web\css\fontawesome.min.css')}}"
+  rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
 {% endblock %}
 
@@ -16,9 +17,18 @@
     <div class="card-body">
       <h5 class="card-title">{{param['book']['title']}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{param['book']['author']}}</h6>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-        This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      <p class="card-text">{{param['book']['info']}}</p>
+      {% if current_user.is_authenticated %}
+      {% if not param['favourite'] %}
+      <a href="{{param['book']['id']}}/books/favourite"><button type="button" class="btn btn-primary">Добавить в понравившиеся</button></a>
+      {% else %}
+      <a href="{{param['book']['id']}}/books/favourite"><button type="button" class="btn btn-outline-secondary">Удалить из понравившихся</button></a>
+      {% endif %}
+      {% else %}
+      <div class="alert alert-primary" role="alert">
+        Войдите, чтобы добавить эту книгу в понравившиеся!
+      </div>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -26,14 +36,87 @@
   <div class="row">
     <div class="col-md-12">
       <div class="stars">
-        <form action=""> <input class="star star-5" id="star-5" type="radio" name="star" /> <label class="star star-5"
-            for="star-5"></label> <input class="star star-4" id="star-4" type="radio" name="star" /> <label
-            class="star star-4" for="star-4"></label> <input class="star star-3" id="star-3" type="radio" name="star" />
-          <label class="star star-3" for="star-3"></label> <input class="star star-2" id="star-2" type="radio"
-            name="star" /> <label class="star star-2" for="star-2"></label> <input class="star star-1" id="star-1"
-            type="radio" name="star" /> <label class="star star-1" for="star-1"></label> </form>
+        </form>
+        {% if param['rating'] >= 4 %}
+        <div class="alert alert-success" role="alert">
+          Оценка пользователей: {{param['rating']}}
+        </div>
+        {% elif param['rating'] >= 2.5 %}
+        <div class="alert alert-warning" role="alert">
+          Оценка пользователей: {{param['rating']}}
+        </div>
+        {% elif param['rating'] >= 1 %}
+        <div class="alert alert-danger" role="alert">
+          Оценка пользователей: {{param['rating']}}
+        </div>
+        {% else %}
+        <div class="alert alert-info" role="alert">
+          Никто пока еще не оценил данную книгу. Будьте первыми!
+        </div>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+        <form method="POST">
+          {% if param['user_rating'] %}
+          <div class="alert alert-primary" role="alert">
+            Вы поставили: {{param['user_rating']}}
+          </div>
+          <div class="alert alert-secondary" role="alert">
+            Изменить ваш рейтинг
+          </div>
+          {% else %}
+          <div class="alert alert-primary" role="alert">
+            Оцените книгу!
+          </div>
+          {% endif %}
+          <input class="star star-5" id="star-5" type="radio" name="star1" /> <label class="star star-5"
+            for="star-5"></label>
+          <input class="star star-4" id="star-4" type="radio" name="star2" /> <label class="star star-4"
+            for="star-4"></label>
+          <input class="star star-3" id="star-3" type="radio" name="star3" /> <label class="star star-3"
+            for="star-3"></label>
+          <input class="star star-2" id="star-2" type="radio" name="star4" /> <label class="star star-2"
+            for="star-2"></label>
+          <input class="star star-1" id="star-1" type="radio" name="star5" /> <label class="star star-1"
+            for="star-1"></label>
+          <button type="submit" class="btn btn-primary btn-sm">Оценить</button>
+        </form>
+        {% else %}
+        <div class="alert alert-primary" role="alert">
+          Зарегистрируйтесь, чтобы оценить!
+        </div>
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
+{% if current_user.is_authenticated %}
+  <a href="/books/{{param['book']['id']}}/add_comment"><button type="button" class="btn btn-info">Написать отзыв</button></a>
+{% else %}
+<div class="alert alert-dark" role="alert">
+  Зарегистрируйтесь, чтобы написать отзыв!
+</div>
+{% endif %}
+{% for comment in comments %}
+  <div class="card">
+    <div class="card-header">
+      {% if comment['anonymous'] %}
+        Добавлен анонимно
+      {% else %}
+        <a href="/users/{{comment['user']['id']}}">{{comment['user']['name']}}</a>
+      {% endif %}
+      {% if comment['user'] == current_user %}
+        <div class="btn-group text-end" role="group" aria-label="Basic mixed styles example">
+          <a href="{{comment['id']}}/edit_comment"><button type="button" class="btn btn-secondary">Изменить</button></a>
+          <a href="{{comment['id']}}/delete_comment"><button type="button" class="btn btn-outline-danger">Удалить</button></a>
+        </div>
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{comment['content']}}</p>
+        <footer class="blockquote-footer">{{comment['date']}}</footer>
+      </blockquote>
+    </div>
+  </div>
+{% endfor %}
 {% endblock %}
