@@ -16,7 +16,7 @@
     <img src="{{param['book']['img']}}" alt="..." height=300px width=200px>
     <div class="card-body">
       <h5 class="card-title">{{param['book']['title']}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{param['book']['author']}}</h6>
+      <a href="../search/{{param['book']['author']}}"><h6 class="card-subtitle mb-2 text-muted">{{param['book']['author']}}</h6></a>
       <p class="card-text">{{param['book']['info']}}</p>
       {% if current_user.is_authenticated %}
       {% if not param['favourite'] %}

@@ -27,7 +27,7 @@
         <a href="{{url_for('book_page', book_id=book['id'])}}">
           <h5 class="card-title">{{book['title']}}</h5>
         </a>
-        <a href='#'>
+        <a href="../search/{{book['author']}}">
           <h6 class="card-subtitle mb-2 text-muted">{{book['author']}}</h6>
         </a>
         <p class="card-text">{{book['info']}}</p>
