@@ -13,13 +13,12 @@ class User(SqlAlchemyBase, UserMixin):
                            primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     about = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    email = sqlalchemy.Column(sqlalchemy.String,
-                              index=True, unique=True, nullable=True)
+    email = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
     about = sqlalchemy.Column(sqlalchemy.String, default='')
-    favourite_books = sqlalchemy.Column(sqlalchemy.String, default='')
     show_favourite_books = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
+    admin = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
     ratings = orm.relation('Rating', back_populates='user')
     comments = orm.relation('Comment', back_populates='user')
 

@@ -1,0 +1,23 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+<a href='add'><button type="button" class="btn btn-primary">Добавить</button></a>
+<form class="form-inline" method='POST'>
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="inputId" class="sr-only">ID</label>
+        <input name='input' type="text" class="form-control" id="inputId" placeholder="ID">
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="option" id="edit" value="edit" checked>
+        <label class="form-check-label" for="edit">
+            Изменить
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="option" id="delete" value="delete">
+        <label class="form-check-label" for="delete">
+            Удалить
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Выполнить</button>
+</form>
+{% endblock %}

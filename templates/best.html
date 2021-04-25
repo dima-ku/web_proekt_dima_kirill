@@ -9,13 +9,41 @@
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <a href="{{url_for('book_page', book_id=book['id'])}}"><h5 class="card-title">{{book['title']}}</h5></a>
-                <a href="search/{{book['author']}}"><h6 class="card-subtitle mb-2 text-muted">{{book['author']}}</h6></a>
+                <a href="{{url_for('book_page', book_id=book['id'])}}">
+                    <h5 class="card-title">{{book['title']}}</h5>
+                </a>
+                <a href="/search/{{book['author']}}/1">
+                    <h6 class="card-subtitle mb-2 text-muted">{{book['author']}}</h6>
+                </a>
                 <p class="card-text">{{book['info']}}</p>
                 <p class="card-text"><small class="text-muted">{{book['year']}}</small></p>
             </div>
         </div>
     </div>
-</div> 
+</div>
 {% endfor %}
+<ul class="pagination">
+    {% if pages['previous_page'] %}
+    <li class="page-item">
+
+        <a class="page-link" href="{{pages['previous_page']}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    {% endif %}
+    {% if pages['previous_page'] %}
+    <li class="page-item"><a class="page-link" href="{{pages['previous_page']}}">{{pages['previous_page']}}</a></li>
+    {% endif %}
+    <li class="page-item active"><a class="page-link">{{pages['page']}}</a></li>
+    {% if pages['next_page'] %}
+    <li class="page-item"><a class="page-link" href="{{pages['next_page']}}">{{pages['next_page']}}</a></li>
+    {% endif %}
+    {% if pages['next_page'] %}
+    <li class="page-item">
+        <a class="page-link" href="{{ pages['next_page'] }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+    {% endif %}
+</ul>
 {% endblock %}

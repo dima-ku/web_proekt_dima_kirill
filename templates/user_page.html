@@ -11,7 +11,7 @@
     <h5 class="card-title">{{user['name']}}</h5>
     <p class="card-text">{{user['about']}}</p>
     {% if current_user.is_authenticated and current_user.id == session['user_id'] %}
-    <a href="/users/{{user['id']}}/edit" class="btn btn-primary text-end">Edit</a>
+    <a href="/users/{{user['id']}}/edit" class="btn btn-primary text-end">Изменить</a>
     {% endif %}
   </div>
 </div>
@@ -27,7 +27,7 @@
         <a href="{{url_for('book_page', book_id=book['id'])}}">
           <h5 class="card-title">{{book['title']}}</h5>
         </a>
-        <a href="../search/{{book['author']}}">
+        <a href="../search/{{book['author']}}/1">
           <h6 class="card-subtitle mb-2 text-muted">{{book['author']}}</h6>
         </a>
         <p class="card-text">{{book['info']}}</p>

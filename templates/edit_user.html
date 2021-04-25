@@ -8,6 +8,11 @@
 <h1>Изменить информацию о пользователе</h1>
 <form action="" method="post">
     {{ form.hidden_tag() }}
+    {% if errors %}
+    <div class="alert alert-danger" role="alert">
+        Ошибка: {{errors}}
+    </div>
+    {% endif %}
     <p>
         {{ form.current_password.label }}<br>
         {{ form.current_password(class="form-control") }}<br>
@@ -17,11 +22,6 @@
     </p>
     {% endfor %}
     </p>
-    {% if errors %}
-    <div class="alert alert-danger" role="alert">
-        Ошибка: {{errors}}
-    </div>
-    {% endif %}
     <p>
         {{ form.name.label }}<br>
         {{ form.name(class="form-control") }}<br>

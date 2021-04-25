@@ -16,7 +16,7 @@
     <img src="{{param['book']['img']}}" alt="..." height=300px width=200px>
     <div class="card-body">
       <h5 class="card-title">{{param['book']['title']}}</h5>
-      <a href="../search/{{param['book']['author']}}"><h6 class="card-subtitle mb-2 text-muted">{{param['book']['author']}}</h6></a>
+      <a href="../search/{{param['book']['author']}}/1"><h6 class="card-subtitle mb-2 text-muted">{{param['book']['author']}}</h6></a>
       <p class="card-text">{{param['book']['info']}}</p>
       {% if current_user.is_authenticated %}
       {% if not param['favourite'] %}
@@ -32,7 +32,9 @@
       {% if exists %}
       <a href="{{param['book']['id']}}/download" target="_blank"><button type="button" class="btn btn-primary">Загрузить</button></a>
       {% endif %}
-      <a href="{{param['book']['link']}}"><button type="button" class="btn btn-warning">Сохранить на Яндекс.Диск</button></a>
+      {% if param['book']['link'] %}
+        <a href="{{param['book']['link']}}"><button type="button" class="btn btn-warning">Сохранить на Яндекс.Диск</button></a>
+      {% endif %}
     </div>
   </div>
 </div>
